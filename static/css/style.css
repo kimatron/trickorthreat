@@ -1,5 +1,5 @@
 /* ============================================
-   🩸 PHANTOM PHISHERS - BLOOD & FIRE THEME
+   ðŸ©¸ PHANTOM PHISHERS - BLOOD & FIRE THEME
    ============================================ */
 
 @font-face {
@@ -16,21 +16,21 @@
 }
 
 :root {
-    --blood-red: #8B0000;
-    --neon-orange: #FF4500;
-    --toxic-orange: #FF6B35;
-    --black-void: #0a0a0a;
-    --dark-grey: #1a1a1a;
-    --ash-grey: #2a2a2a;
-    --blood-glow: rgba(139, 0, 0, 0.5);
-    --fire-glow: rgba(255, 69, 0, 0.6);
+    --blood-red: #8B3A3A;
+    --neon-orange: #fa6701;
+    --toxic-orange: #fa6701;
+    --black-void: #1B2628;
+    --dark-grey: #2F5363;
+    --ash-grey: #3d5a6b;
+    --blood-glow: rgba(250, 103, 1, 0.2);
+    --fire-glow: rgba(250, 103, 1, 0.2);
 }
 
 body {
     background: linear-gradient(to bottom,
             var(--black-void) 0%,
             var(--dark-grey) 50%,
-            #1a0f0f 100%);
+            #2a3a3f 100%);
     min-height: 100vh;
     font-family: 'Space Grotesk', -apple-system, sans-serif;
     overflow-x: hidden;
@@ -43,7 +43,7 @@ body {
 }
 
 /* ============================================
-   🔥 NAVBAR - BLOOD & FIRE
+   ðŸ”¥ NAVBAR - BLOOD & FIRE
    ============================================ */
 
 .spooky-nav {
@@ -279,8 +279,7 @@ body {
             var(--neon-orange),
             var(--toxic-orange));
     box-shadow:
-        0 0 10px var(--neon-orange),
-        0 0 20px var(--blood-red);
+        0 0 6px var(--neon-orange);
     transition: all 0.3s ease;
     transform: translateX(-50%);
 }
@@ -293,16 +292,14 @@ body {
 .nav-link:hover {
     color: var(--toxic-orange);
     text-shadow:
-        0 0 10px var(--fire-glow),
-        0 0 20px var(--blood-glow);
+        0 0 8px var(--fire-glow);
     transform: translateY(-2px);
 }
 
 .nav-link.active {
     color: var(--neon-orange);
     text-shadow:
-        0 0 15px var(--neon-orange),
-        0 0 30px var(--blood-red);
+        0 0 12px var(--neon-orange);
 }
 
 .nav-neon-line {
@@ -393,7 +390,7 @@ body {
 }
 
 /* ============================================
-   🎃 MAIN CONTENT AREA
+   ðŸŽƒ MAIN CONTENT AREA
    ============================================ */
 
 #particleCanvas {
@@ -430,10 +427,9 @@ body {
     /* Tighter letter spacing */
     color: var(--toxic-orange);
     text-shadow:
-        2px 2px 4px rgba(0, 0, 0, 0.8),
-        /* Dark shadow for depth */
-        0 0 20px var(--fire-glow);
-    /* Subtle glow */
+        0 4px 12px rgba(0, 0, 0, 0.6),
+        0 0 40px rgba(250, 103, 1, 0.15);
+    /* Subtle glow - much more readable */
     opacity: 1;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
     /* Extra depth */
@@ -499,7 +495,7 @@ body {
 }
 
 /* ============================================
-   🩸 GLASS CARDS
+   ðŸ©¸ GLASS CARDS
    ============================================ */
 
 .glass-card {
@@ -557,7 +553,7 @@ body {
 }
 
 .team-name::after {
-    content: '👻';
+    content: 'ðŸ‘»';
     position: absolute;
     right: -25px;
     top: 50%;
@@ -566,7 +562,7 @@ body {
 }
 
 /* ============================================
-   🔥 FEATURE CARDS
+   ðŸ”¥ FEATURE CARDS
    ============================================ */
 
 .features {
@@ -648,7 +644,7 @@ body {
 }
 
 /* ============================================
-   🎃 BUTTONS
+   ðŸŽƒ BUTTONS
    ============================================ */
 
 button,
@@ -700,7 +696,7 @@ button:hover,
 }
 
 /* ============================================
-   👻 FLOATING ELEMENTS
+   ðŸ‘» FLOATING ELEMENTS
    ============================================ */
 
 .ghost {
@@ -863,7 +859,7 @@ button:hover,
 }
 
 /* ============================================
-   🎧 AUDIO CONTROL
+   ðŸŽ§ AUDIO CONTROL
    ============================================ */
 
 .audio-control {
@@ -894,7 +890,7 @@ button:hover,
 }
 
 /* ============================================
-   📜 SCROLLBAR
+   ðŸ“œ SCROLLBAR
    ============================================ */
 
 ::-webkit-scrollbar {
@@ -927,7 +923,7 @@ button:hover,
 }
 
 /* ============================================
-   📜 QUIZ PAGE
+   ðŸ“œ QUIZ PAGE
    ============================================ */
 
 .quiz-status-item {
@@ -987,14 +983,14 @@ button:hover,
 }
 
 /* ============================================
-   📜 LEADERBOARD
+   ðŸ“œ LEADERBOARD
    ============================================ */
    td {
     padding: 0.5rem 0.25rem;
    }
 
 /* ============================================
-   📱 RESPONSIVE
+   ðŸ“± RESPONSIVE
    ============================================ */
 
 @media (max-width: 768px) {
