@@ -1786,7 +1786,7 @@ button[data-type="start-quiz"]:hover,
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #0a0a0a 80%);
+    /* background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #0a0a0a 80%); */
     position: relative;
 }
 
@@ -1835,7 +1835,7 @@ button[data-type="start-quiz"]:hover,
 .team-container {
     position: relative;
     z-index: 2;
-    background-color: #0a0a0a;
+    /* background-color: #0a0a0a; */
     padding: 2rem 0;
 }
 
@@ -1847,8 +1847,8 @@ button[data-type="start-quiz"]:hover,
     min-height: 90vh;
     padding: 5vh 5vw;
     gap: 2rem;
-    opacity: 1 !important;
-    visibility: visible !important;
+    /* opacity: 1 !important; */
+    /* visibility: visible !important; */
 }
 
 .team-member-item.layout-right {
@@ -2032,6 +2032,7 @@ button[data-type="start-quiz"]:hover,
 .team-member-item {
     opacity: 0;
     transform: translateY(50px);
+    transition: opacity 0.9s cubic-bezier(.4,0,.2,1), transform 0.6s cubic-bezier(.4,0,.2,1);
 }
 
 .team-member-item.revealed {

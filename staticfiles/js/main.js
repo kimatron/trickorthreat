@@ -606,12 +606,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const reportURL =
       result.task && result.task.reportURL ? result.task.reportURL : null;
 
-    let html = `<div><strong>Score:</strong> ${score}</div>`;
-    html += `<div><strong>Malicious:</strong> ${malicious}</div>`;
-    if (reportURL) {
-      html += `<div><a href="${reportURL}" target="_blank">View Full Report</a></div>`;
+    let leadMsg = "";
+    if (malicious === true || malicious === "True" || malicious === 1 || malicious === "1") {
+      leadMsg = `<h2 class="scanner-title"> Trick! This URL is malicious.</h2>`;
+    } else if (malicious === false || malicious === "False" || malicious === 0 || malicious === "0") {
+      leadMsg = `<h2 class="scanner-title"> Treat! This URL appears safe.</h2>`;
     }
 
+    let html = `<div style=\"text-align:center;\">`;
+    html += leadMsg;
+    // html += `<div><strong>Score:</strong> ${score}</div>`;
+    // html += `<div><strong>Malicious:</strong> ${malicious}</div>`;
+    if (reportURL) {
+      html += `<div><a href=\"${reportURL}\" target=\"_blank\" class="btn btn-primary">View Full Report</a></div>`;
+    }
+    html += `</div>`;
     resultsDiv.innerHTML = html;
   }
 
@@ -927,8 +936,9 @@ document.addEventListener("DOMContentLoaded", function () {
         var rect = member.getBoundingClientRect();
         var windowHeight = window.innerHeight;
 
-        if (rect.top < windowHeight * 0.8) {
+        if (rect.top < windowHeight * 0.6) {
           member.classList.add("revealed");
+          console.log("Member revealed");
         }
       });
     }
