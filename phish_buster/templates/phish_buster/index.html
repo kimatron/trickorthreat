@@ -1,73 +1,184 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!-- Canvas for particles -->
-<canvas id="particleCanvas"></canvas>
-
-<!-- Floating ghosts -->
-<div class="ghost ghost1"></div>
-<div class="ghost ghost2"></div>
-<div class="ghost ghost3"></div>
-<div class="ghost ghost4"></div>
-
-<!-- Flying bats -->
-<div class="bat bat1">🦇</div>
-<div class="bat bat2">🦇</div>
-<div class="bat bat3">🦇</div>
-
-<!-- Pumpkins -->
-<div class="pumpkin pumpkin1">🎃</div>
-<div class="pumpkin pumpkin2">🎃</div>
-
-<!-- Audio control -->
-<div class="audio-control" id="audioToggle" title="Toggle spooky vibes">
-    🔇
-</div>
-
-<audio id="bgAudio" loop>
-    <source src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" type="audio/mpeg">
-</audio>
-
-<!-- Main content -->
+<!-- Main Hero Section -->
 <div class="container">
-    <!-- Title -->
+    <!-- Hero Title -->
     <div class="title-container" id="titleContainer">
         <h1 class="title" id="mainTitle">TRICK OR THREAT</h1>
+        <p class="subtitle">Master the Art of Phishing Detection</p>
     </div>
 
-    <!-- Main glass card -->
-    <div class="glass-card" id="mainCard">
-        <h2>Code Institute Halloween Hackathon 🎃</h2>
-        <p>
-            Team <span class="team-name">Phantom Phishers</span> reporting for duty. We're making a phishing detection
-            toolkit because apparently people still click on emails from "Amaz0n Security Department."
-        </p>
-        <p>
-            Paste a sketchy URL, take a quiz on fake emails, maybe learn something. Or don't. We're not your mom.
-        </p>
-        <div class="status-badge" id="badge">CURRENTLY BUILDING IN GITHUB</div>
+    <!-- Mission Statement -->
+    <div class="hero-card glass-card" id="mainCard">
+        <div class="hero-content">
+            <h2 class="hero-heading">🎃 Welcome to Your Security Training Ground</h2>
+            <p class="hero-text">
+                In today's digital world, phishing attacks are becoming increasingly sophisticated. 
+                <strong>Trick or Threat</strong> is an interactive platform designed to sharpen your 
+                cyber awareness through gamification and real-world scenarios.
+            </p>
+            <p class="hero-text">
+                Built by <strong>Team Phantom Phishers</strong> for the Code Institute Halloween Hackathon 2025, 
+                this tool combines education with engagement to help you recognize threats before they strike.
+            </p>
+            
+            <div class="feature-highlights">
+                <div class="highlight-item">
+                    <span class="highlight-icon">🎯</span>
+                    <span class="highlight-text">20 Real-World Email Scenarios</span>
+                </div>
+                <div class="highlight-item">
+                    <span class="highlight-icon">⚡</span>
+                    <span class="highlight-text">Instant URL Safety Analysis</span>
+                </div>
+                <div class="highlight-item">
+                    <span class="highlight-icon">🏆</span>
+                    <span class="highlight-text">Competitive Leaderboard</span>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Feature cards -->
-    <div class="features" id="features">
-        <div class="feature-card">
-            <span class="feature-icon">🔍</span>
-            <h3 class="feature-title">URL Scanner</h3>
-            <p class="feature-text">Check if a link is legit or trying to steal your identity. Spoiler: it's usually the
-                second one.</p>
+    <!-- Call to Action Section -->
+    <div class="cta-section">
+        <h2 class="section-title">Choose Your Challenge</h2>
+        <p class="section-subtitle">Three ways to test and improve your phishing detection skills</p>
+    </div>
+
+    <!-- Interactive Door Cards -->
+    <div class="haunted-corridor" id="hauntedCorridor">
+        
+        <!-- Door 1: URL Scanner -->
+        <a href="{% url 'scanner' %}" class="haunted-doorway scanner-door" data-door="scanner">
+            <div class="door-frame">
+                <div class="door-panel">
+                    <div class="door-window">
+                        <span class="door-icon">🔍</span>
+                    </div>
+                    <div class="door-knob"></div>
+                    <div class="door-texture"></div>
+                </div>
+                <div class="door-light"></div>
+                <div class="door-fog"></div>
+            </div>
+            <div class="door-label">
+                <h3>URL Scanner</h3>
+                <p>Investigate suspicious links in real-time using URLScan.io integration</p>
+                <span class="door-badge">🔒 Safe & Private</span>
+            </div>
+        </a>
+
+        <!-- Door 2: Phishing Quiz -->
+        <a href="{% url 'quiz' %}" class="haunted-doorway quiz-door" data-door="quiz">
+            <div class="door-frame">
+                <div class="door-panel">
+                    <div class="door-window">
+                        <span class="door-icon">🎮</span>
+                    </div>
+                    <div class="door-knob"></div>
+                    <div class="door-texture"></div>
+                </div>
+                <div class="door-light"></div>
+                <div class="door-fog"></div>
+            </div>
+            <div class="door-label">
+                <h3>Phishing Quiz</h3>
+                <p>Test yourself on 20 realistic phishing scenarios and legitimate emails</p>
+                <span class="door-badge">⏱️ 10 Minutes</span>
+            </div>
+        </a>
+
+        <!-- Door 3: Leaderboard -->
+        <a href="{% url 'leaderboard' %}" class="haunted-doorway leaderboard-door" data-door="leaderboard">
+            <div class="door-frame">
+                <div class="door-panel">
+                    <div class="door-window">
+                        <span class="door-icon">🏆</span>
+                    </div>
+                    <div class="door-knob"></div>
+                    <div class="door-texture"></div>
+                </div>
+                <div class="door-light"></div>
+                <div class="door-fog"></div>
+            </div>
+            <div class="door-label">
+                <h3>Leaderboard</h3>
+                <p>See how you rank against other cyber defenders worldwide</p>
+                <span class="door-badge">🌍 Global</span>
+            </div>
+        </a>
+    </div>
+
+    <!-- Why This Matters Section -->
+    <div class="info-section glass-card">
+        <h2 class="section-title">Why Phishing Detection Matters</h2>
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="info-icon">📧</div>
+                <h3>3.4 Billion</h3>
+                <p>Phishing emails sent every day</p>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">💰</div>
+                <h3>$10.3 Billion</h3>
+                <p>Lost to cybercrime annually</p>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">⚠️</div>
+                <h3>90%</h3>
+                <p>Of data breaches start with phishing</p>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">🎯</div>
+                <h3>1 in 4</h3>
+                <p>People fall for phishing attempts</p>
+            </div>
         </div>
-        <div class="feature-card">
-            <span class="feature-icon">🎮</span>
-            <h3 class="feature-title">Phishing Quiz</h3>
-            <p class="feature-text">Test yourself on fake emails. Can you spot the obvious scams? (Most people can't.)
-            </p>
+    </div>
+
+    <!-- How It Works Section -->
+    <div class="how-it-works glass-card">
+        <h2 class="section-title">How It Works</h2>
+        <div class="steps-container">
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <h3>Choose Your Tool</h3>
+                <p>Start with the URL Scanner for quick link checks, or dive into the quiz for comprehensive training.</p>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <h3>Learn & Practice</h3>
+                <p>Analyze real-world email scenarios, identify red flags, and understand common phishing tactics.</p>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <h3>Track Progress</h3>
+                <p>See your score improve over time and compare your skills with other users on the leaderboard.</p>
+            </div>
         </div>
-        <div class="feature-card">
-            <span class="feature-icon">🏆</span>
-            <h3 class="feature-title">Leaderboard</h3>
-            <p class="feature-text">Compete with strangers on the internet. Build streaks, earn badges, feel superior.
-            </p>
-        </div>
+    </div>
+
+    <!-- Team Credits -->
+    <div class="credits-section glass-card">
+        <h2 class="section-title">Meet the Phantom Phishers</h2>
+        <p class="credits-text">
+            Built with ❤️ by Team 3 for the Code Institute Halloween Hackathon 2025. 
+            A collaborative effort combining Django backend, interactive frontend, and 
+            real-world cybersecurity education.
+        </p>
+        <a href="{% url 'team' %}" class="team-cta-button">
+            Meet The Full Team →
+        </a>
+    </div>
+
+    <!-- Final CTA -->
+    <div class="final-cta">
+        <h2 class="cta-title">Ready to Test Your Skills?</h2>
+        <p class="cta-text">Join hundreds of users learning to outsmart phishing attacks</p>
+        <a href="{% url 'quiz' %}" class="cta-button">Start the Quiz Now</a>
     </div>
 </div>
 
