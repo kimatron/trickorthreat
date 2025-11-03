@@ -42,7 +42,7 @@ body {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 /* ============================================
@@ -2182,3 +2182,4 @@ button[data-type="start-quiz"]:hover,
         font-size: 1.5rem;
     }
 }
+
