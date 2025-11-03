@@ -2039,3 +2039,146 @@ button[data-type="start-quiz"]:hover,
     transform: translateY(0);
     transition: all 0.8s ease;
 }
+
+/* KEEP EVERYTHING VISIBLE */
+.hero-card,
+.haunted-corridor,
+.haunted-doorway {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* STOP GSAP FROM HIDING THINGS */
+.hero-card {
+    animation: none !important;
+    transform: none !important;
+}
+
+/* MAKE DOORS LOOK BETTER */
+.haunted-corridor {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    padding: 3rem 2rem;
+    max-width: 1400px;
+    margin: 4rem auto;
+}
+
+.haunted-doorway {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    background: rgba(10, 10, 10, 0.9);
+    border: 3px solid #8B3A3A;
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    min-height: 350px;
+    justify-content: space-between;
+}
+
+.haunted-doorway:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: #fa6701;
+    box-shadow: 0 20px 40px rgba(250, 103, 1, 0.4);
+    background: rgba(20, 10, 10, 0.95);
+}
+
+/* SIMPLIFY DOOR STRUCTURE */
+.door-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.door-panel {
+    position: relative;
+    background: rgba(47, 83, 99, 0.3);
+    border: 2px solid rgba(250, 103, 1, 0.3);
+    border-radius: 12px;
+    padding: 2rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.door-window {
+    position: static;
+    transform: none;
+    background: none;
+    border: none;
+}
+
+.door-icon {
+    font-size: 4rem;
+    filter: drop-shadow(0 0 20px rgba(250, 103, 1, 0.8));
+}
+
+/* HIDE UNNECESSARY DOOR ELEMENTS */
+.door-knob,
+.door-texture,
+.door-light,
+.door-fog {
+    display: none;
+}
+
+/* MAKE DOOR LABELS VISIBLE */
+.door-label {
+    position: static;
+    opacity: 1;
+    padding: 1rem 0 0 0;
+    text-align: center;
+}
+
+.door-label h3 {
+    font-family: 'YouMurderer', cursive;
+    font-size: 1.8rem;
+    color: #fa6701;
+    margin-bottom: 0.75rem;
+}
+
+.door-label p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+}
+
+.door-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(47, 83, 99, 0.5);
+    border: 2px solid #fa6701;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #fa6701;
+    font-weight: 600;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 992px) {
+    .haunted-corridor {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem 1rem;
+    }
+    
+    .haunted-doorway {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .door-icon {
+        font-size: 3rem;
+    }
+    
+    .door-label h3 {
+        font-size: 1.5rem;
+    }
+}
