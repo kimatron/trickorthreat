@@ -927,8 +927,9 @@ document.addEventListener("DOMContentLoaded", function () {
         var rect = member.getBoundingClientRect();
         var windowHeight = window.innerHeight;
 
-        if (rect.top < windowHeight * 0.8) {
+        if (rect.top < windowHeight * 0.6) {
           member.classList.add("revealed");
+          console.log("Member revealed");
         }
       });
     }

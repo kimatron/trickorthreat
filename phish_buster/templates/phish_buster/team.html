@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<style>
+<!-- <style>
     /* ============================================
        🩸 PHANTOM PHISHERS - THEME
        ============================================ */
@@ -17,7 +17,7 @@
         --blood-glow: rgba(139, 0, 0, 0.5); --fire-glow: rgba(255, 69, 0, 0.6);
     }
     body {
-        background-color: var(--black-void);
+        /* background-color: var(--black-void); */
         font-family: 'Space Grotesk', -apple-system, sans-serif;
         color: #fff;
         overflow-x: hidden;
@@ -30,7 +30,7 @@
         height: 100vh;
         display: flex; flex-direction: column; align-items: center;
         justify-content: center; text-align: center;
-        background: radial-gradient(circle at 50% 50%, var(--dark-grey) 0%, var(--black-void) 80%);
+        /* background: radial-gradient(circle at 50% 50%, var(--dark-grey) 0%, var(--black-void) 80%); */
         position: relative;
     }
     .hero-title {
@@ -134,7 +134,7 @@
             flex-basis: auto; width: 100%;
         }
     }
-</style>
+</style> -->
 
 <!-- Hero Section -->
 <section class="team-hero">
@@ -240,7 +240,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollToPlugin.min.js"></script>
 
-<script>
+<!-- <script>
 document.addEventListener("DOMContentLoaded", function () {
     if (typeof gsap === 'undefined') { console.error("GSAP not loaded!"); return; }
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
@@ -289,6 +289,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }, "<");
     });
 });
-</script>
+</script> -->
 
 {% endblock content %}
