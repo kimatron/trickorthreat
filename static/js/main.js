@@ -1,0 +1,487 @@
+// ============================================
+// PHANTOM PHISHERS - UNIFIED ANIMATION SYSTEM
+// Windows-Compatible Version (No Emoji Characters)
+// Combined & Optimized for Halloween Hackathon 2025
+// ============================================
+
+document.addEventListener("DOMContentLoaded", function() {
+  
+  // ============================================
+  // GSAP INITIALIZATION
+  // ============================================
+  if (typeof gsap === "undefined") {
+    console.error("GSAP not loaded - animations will not run.");
+    return;
+  }
+
+  // Register all GSAP plugins
+  gsap.registerPlugin(ScrollTrigger);
+  
+  console.log("%c*** PHANTOM PHISHERS LOADED ***", "color: #FF4500; font-size: 24px; font-weight: bold;");
+
+  // ============================================
+  // CORE UI & EVENT LISTENERS
+  // ============================================
+  var initCoreUI = function() {
+    var nav = document.getElementById("mainNav");
+    var hamburger = document.getElementById("hamburger");
+    var navMenu = document.getElementById("navMenu");
+    var navLinks = document.querySelectorAll(".nav-link");
+
+    // Navbar Scroll Effect
+    window.addEventListener("scroll", function() {
+      if (window.scrollY > 50) {
+        if (nav) nav.classList.add("scrolled");
+      } else {
+        if (nav) nav.classList.remove("scrolled");
+      }
+    });
+
+    // Mobile Menu Toggle
+    if (hamburger && navMenu) {
+      hamburger.addEventListener("click", function() {
+        hamburger.classList.toggle("active");
+        navMenu.classList.toggle("active");
+      });
+
+      navLinks.forEach(function(link) {
+        link.addEventListener("click", function() {
+          hamburger.classList.remove("active");
+          navMenu.classList.remove("active");
+        });
+      });
+    }
+
+    // Smooth Scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener("click", function(e) {
+        var href = this.getAttribute("href");
+        if (href === "#") return;
+        
+        e.preventDefault();
+        var target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Audio Control
+    var audioToggle = document.getElementById("audioToggle");
+    var bgAudio = document.getElementById("bgAudio");
+    if (audioToggle && bgAudio) {
+      bgAudio.volume = 0.3;
+      audioToggle.addEventListener("click", function() {
+        if (bgAudio.paused) {
+          bgAudio.play().catch(function(e) {
+            console.log("Audio autoplay prevented");
+          });
+          audioToggle.textContent = "SOUND ON";
+        } else {
+          bgAudio.pause();
+          audioToggle.textContent = "SOUND OFF";
+        }
+      });
+    }
+  };
+
+  // ============================================
+  // MASTER ANIMATION TIMELINE
+  // ============================================
+  var initAnimations = function() {
+    var masterTL = gsap.timeline({ delay: 0.3 });
+
+    // 1. Navbar Animation
+    masterTL
+      .from(".nav-logo", { 
+        x: -100, 
+        opacity: 0, 
+        duration: 1, 
+        ease: "power3.out" 
+      })
+      .from(".nav-item", { 
+        y: -40, 
+        opacity: 0, 
+        duration: 0.6, 
+        stagger: 0.12, 
+        ease: "back.out(1.7)" 
+      }, "-=0.5")
+      .from(".nav-neon-line", { 
+        scaleX: 0, 
+        duration: 1.5, 
+        ease: "power2.inOut" 
+      }, "-=0.6");
+
+    // 2. Title Animation with Character Split
+    var title = document.getElementById("mainTitle");
+    if (title) {
+      var text = title.textContent;
+      title.innerHTML = '';
+      
+      text.split('').forEach(function(char) {
+        var span = document.createElement('span');
+        span.className = 'char';
+        span.textContent = char === ' ' ? '\u00A0' : char;
+        span.style.display = 'inline-block';
+        title.appendChild(span);
+      });
+
+      masterTL.from(title.querySelectorAll('.char'), {
+        opacity: 0,
+        y: 80,
+        rotationX: -90,
+        stagger: 0.05,
+        duration: 1,
+        ease: "back.out(1.7)",
+      }, "-=1.2");
+
+      // Add hover effect to title
+      title.addEventListener('mouseenter', function() {
+        gsap.to(title.querySelectorAll('.char'), {
+          y: -10,
+          duration: 0.3,
+          stagger: 0.02,
+          ease: 'power2.out',
+          yoyo: true,
+          repeat: 1
+        });
+      });
+    }
+
+    // 3. Subtitle and Hero Card
+    masterTL
+      .from(".subtitle", { 
+        opacity: 0, 
+        y: 20, 
+        duration: 0.8 
+      }, "-=0.8")
+      .from(".hero-card", { 
+        opacity: 0, 
+        y: 50, 
+        duration: 1, 
+        ease: "power2.out" 
+      }, "-=0.6");
+
+    // 4. Feature Highlights
+    var highlights = document.querySelectorAll('.highlight-item');
+    if (highlights.length > 0) {
+      masterTL.from(highlights, {
+        opacity: 0,
+        x: -30,
+        duration: 0.6,
+        stagger: 0.15,
+        ease: 'power2.out'
+      }, "-=0.4");
+    }
+
+    // 5. CTA Section
+    var ctaSection = document.querySelector('.cta-section');
+    if (ctaSection) {
+      masterTL.from(ctaSection, {
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        ease: 'power2.out'
+      }, "-=0.3");
+    }
+  };
+
+  // ============================================
+  // DOOR ANIMATIONS - FIXED FOR VISIBILITY
+  // ============================================
+  var initDoorAnimations = function() {
+    var corridor = document.querySelector('.haunted-corridor');
+    var doors = document.querySelectorAll('.haunted-doorway');
+
+    if (!corridor || doors.length === 0) {
+      console.log("Doors not found - may be on different page");
+      return;
+    }
+
+    console.log("Initializing " + doors.length + " doors");
+
+    // CRITICAL: Make corridor visible immediately
+    gsap.set(corridor, { 
+      opacity: 1,
+      visibility: 'visible'
+    });
+
+    // CRITICAL: Make doors visible immediately
+    gsap.set(doors, {
+      opacity: 1,
+      visibility: 'visible'
+    });
+
+    var doorTL = gsap.timeline({ delay: 1.5 });
+    
+    doorTL.from(doors, {
+      scale: 0.8,
+      y: 50,
+      rotationY: -15,
+      duration: 1,
+      stagger: 0.2,
+      ease: 'back.out(1.4)',
+      onComplete: function() {
+        // Add floating animation after doors appear
+        doors.forEach(function(door, index) {
+          gsap.to(door, {
+            y: '+=8',
+            duration: 2 + (index * 0.3),
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut'
+          });
+        });
+      }
+    });
+
+    // Door hover interactions
+    doors.forEach(function(door) {
+      var doorPanel = door.querySelector('.door-panel');
+      var doorKnob = door.querySelector('.door-knob');
+      var doorLight = door.querySelector('.door-light');
+
+      door.addEventListener('mouseenter', function() {
+        gsap.to(doorPanel, {
+          scale: 1.05,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+        
+        if (doorKnob) {
+          gsap.to(doorKnob, {
+            rotation: 15,
+            duration: 0.2,
+            ease: 'power2.out'
+          });
+        }
+
+        if (doorLight) {
+          gsap.to(doorLight, {
+            opacity: 1,
+            duration: 0.3
+          });
+        }
+      });
+
+      door.addEventListener('mouseleave', function() {
+        gsap.to(doorPanel, {
+          scale: 1,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+        
+        if (doorKnob) {
+          gsap.to(doorKnob, {
+            rotation: 0,
+            duration: 0.3,
+            ease: 'elastic.out(1, 0.5)'
+          });
+        }
+
+        if (doorLight) {
+          gsap.to(doorLight, {
+            opacity: 0,
+            duration: 0.3
+          });
+        }
+      });
+    });
+  };
+
+  // ============================================
+  // SCROLL-TRIGGERED ANIMATIONS
+  // ============================================
+  var initScrollAnimations = function() {
+    // Glass cards fade in on scroll
+    gsap.utils.toArray('.glass-card').forEach(function(card) {
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 80%',
+          toggleActions: 'play none none reverse'
+        },
+        opacity: 0,
+        y: 50,
+        duration: 0.8,
+        ease: 'power2.out'
+      });
+    });
+
+    // Info items
+    gsap.utils.toArray('.info-item').forEach(function(item, index) {
+      gsap.from(item, {
+        scrollTrigger: {
+          trigger: item,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse'
+        },
+        opacity: 0,
+        y: 30,
+        duration: 0.6,
+        delay: index * 0.1,
+        ease: 'power2.out'
+      });
+    });
+
+    // Step items
+    gsap.utils.toArray('.step-item').forEach(function(step, index) {
+      gsap.from(step, {
+        scrollTrigger: {
+          trigger: step,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse'
+        },
+        opacity: 0,
+        x: index % 2 === 0 ? -50 : 50,
+        duration: 0.8,
+        ease: 'power2.out'
+      });
+    });
+  };
+
+  // ============================================
+  // PARTICLE CANVAS SYSTEM
+  // ============================================
+  var initParticleCanvas = function() {
+    var canvas = document.getElementById('particleCanvas');
+    if (!canvas) return;
+
+    var ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    var particles = [];
+    var maxParticles = 60;
+
+    function Particle() {
+      this.reset();
+    }
+
+    Particle.prototype.reset = function() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 2.5 + 1;
+      this.speedX = (Math.random() - 0.5) * 1.0;
+      this.speedY = (Math.random() - 0.5) * 1.0;
+      var colors = ['#fa6701', '#8B3A3A', 'rgba(255,255,255,0.2)'];
+      this.color = colors[Math.floor(Math.random() * colors.length)];
+      this.life = Math.random() * 150 + 50;
+      this.initialLife = this.life;
+    };
+
+    Particle.prototype.update = function() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      this.life -= 1;
+      
+      if (this.life <= 0 || this.x < -5 || this.x > canvas.width + 5 || 
+          this.y < -5 || this.y > canvas.height + 5) {
+        this.reset();
+      }
+    };
+
+    Particle.prototype.draw = function() {
+      ctx.fillStyle = this.color;
+      ctx.globalAlpha = Math.max(0, this.life / this.initialLife);
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    };
+
+    for (var i = 0; i < maxParticles; i++) {
+      particles.push(new Particle());
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(function(p) {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    window.addEventListener('resize', function() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  };
+
+  // ============================================
+  // FLOATING GHOSTS ANIMATION
+  // ============================================
+  var initFloatingElements = function() {
+    // Animate ghosts
+    document.querySelectorAll('.ghost').forEach(function(ghost, index) {
+      gsap.to(ghost, {
+        x: '+=' + (Math.random() * 100 - 50),
+        y: '+=' + (Math.random() * 100 - 50),
+        rotation: Math.random() * 10 - 5,
+        duration: 5 + index,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut'
+      });
+    });
+
+    // Animate bats
+    document.querySelectorAll('.bat').forEach(function(bat, index) {
+      gsap.to(bat, {
+        x: '+=' + (Math.random() * 200 - 100),
+        y: '+=' + (Math.random() * 150 - 75),
+        rotation: Math.random() * 20 - 10,
+        duration: 3 + index * 0.5,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power1.inOut'
+      });
+    });
+
+    // Animate pumpkins
+    document.querySelectorAll('.pumpkin').forEach(function(pumpkin, index) {
+      gsap.to(pumpkin, {
+        y: '+=' + (Math.random() * 30 - 15),
+        rotation: Math.random() * 15 - 7.5,
+        duration: 4 + index,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut'
+      });
+    });
+  };
+
+  // ============================================
+  // QUIZ PAGE BUTTON FIX
+  // ============================================
+  var initQuizButtons = function() {
+    // Find start button
+    var startButton = document.getElementById('startQuizBtn') || 
+                     document.querySelector('.start-quiz-btn') ||
+                     document.querySelector('button[type="submit"]');
+    
+    if (startButton) {
+      console.log("Quiz button found - adding click handler");
+      startButton.addEventListener('click', function(e) {
+        console.log("Quiz button clicked!");
+        // Let the default form submission happen
+      });
+    }
+  };
+
+  // ============================================
+  // INITIALIZE EVERYTHING
+  // ============================================
+  setTimeout(function() {
+    console.log("Starting initialization...");
+    initCoreUI();
+    initAnimations();
+    initDoorAnimations();
+    initScrollAnimations();
+    initParticleCanvas();
+    initFloatingElements();
+    initQuizButtons();
+    console.log("Initialization complete!");
+  }, 100);
+
+});

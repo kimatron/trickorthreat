@@ -9,15 +9,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phantom Phishing Buster</title>
+    <title>Phantom Phishing Buster | Halloween Hackathon 2025</title>
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
@@ -34,9 +36,9 @@
 
         <!-- Floating particles on nav -->
         <div class="nav-particles">
-            <span class="particle">✨</span>
-            <span class="particle">🦇</span>
-            <span class="particle">💀</span>
+            <span class="particle">👻</span>
+            <span class="particle">🎃</span>
+            <span class="particle">🎃</span>
         </div>
 
         <!-- Desktop Menu -->
@@ -82,16 +84,53 @@
     <!-- Animated neon line -->
     <div class="nav-neon-line"></div>
 </nav>
+
+<!-- ============================================
+     FLOATING HALLOWEEN ATMOSPHERE
+     (Appears on all pages)
+     ============================================ -->
+<!-- Canvas for particles -->
+<canvas id="particleCanvas"></canvas>
+
+<!-- Floating ghosts -->
+<div class="ghost ghost1">👻</div>
+<div class="ghost ghost2">👻</div>
+<div class="ghost ghost3">👻</div>
+<div class="ghost ghost4">👻</div>
+
+<!-- Flying bats -->
+<div class="bat bat1">🦇</div>
+<div class="bat bat2">🦇</div>
+<div class="bat bat3">🦇</div>
+
+<!-- Pumpkins -->
+<div class="pumpkin pumpkin1">🎃</div>
+<div class="pumpkin pumpkin2">🎃</div>
+
+<!-- Audio control -->
+<div class="audio-control" id="audioToggle" title="Toggle spooky vibes">
+    🎃
+</div>
+
+<audio id="bgAudio" loop>
+    <source src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" type="audio/mpeg">
+</audio>
+
     {% block content %}
     {% endblock content %}
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
-    <!-- GSAP Library -->
+
+    <!-- GSAP Core & Plugins -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <!-- Custom JS -->
-    <script src="{% static 'js/script.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Combined Custom JS (MUST come AFTER GSAP) -->
+    <script src="{% static 'js/main.js' %}"></script>
+
 <footer class="minimal-footer">
     <div class="footer-content">
         <div class="footer-left">
@@ -103,7 +142,7 @@
         </div>
         <div class="footer-right">
             <a href="/team" class="team-link">
-                Meet The Team →
+                Meet The Team â†'
             </a>
         </div>
     </div>
