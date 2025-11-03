@@ -1972,3 +1972,70 @@ button[data-type="start-quiz"]:hover,
         font-size: clamp(8rem, 15vw, 12rem);
     }
 }
+
+.haunted-corridor, .haunted-doorway {
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: none !important;
+    transform: none !important;
+}
+.visual-emoji { display: none !important; }
+.member-visual { display: none !important; }
+.member-details {
+    flex-basis: 100% !important;
+    max-width: 800px !important;
+    margin: 0 auto !important;
+}
+.team-member-item {
+    opacity: 0;
+    transform: translateY(50px);
+    justify-content: center !important;
+}
+.team-member-item.revealed {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.8s ease;
+}
+
+.haunted-corridor,
+.haunted-doorway {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.haunted-doorway {
+    animation: none !important;
+    transform: none !important;
+}
+
+/* FIX 2: TEAM PAGE - REMOVE EMOJIS */
+.visual-emoji {
+    display: none !important;
+}
+
+/* FIX 3: TEAM PAGE - MAKE CARDS FULL WIDTH */
+.member-visual {
+    display: none !important;
+}
+
+.member-details {
+    flex-basis: 100% !important;
+    max-width: 800px !important;
+    margin: 0 auto !important;
+}
+
+.team-member-item {
+    justify-content: center !important;
+}
+
+/* FIX 4: TEAM PAGE - SCROLL REVEAL ANIMATION */
+.team-member-item {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.team-member-item.revealed {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.8s ease;
+}

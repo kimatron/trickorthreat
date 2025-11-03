@@ -485,3 +485,112 @@ document.addEventListener("DOMContentLoaded", function() {
   }, 100);
 
 });
+
+// EMERGENCY FIX - Simple working version
+document.addEventListener("DOMContentLoaded", function() {
+  
+  console.log("Site loaded");
+
+  // Mobile menu only
+  var hamburger = document.getElementById("hamburger");
+  var navMenu = document.getElementById("navMenu");
+  if (hamburger && navMenu) {
+    hamburger.addEventListener("click", function() {
+      hamburger.classList.toggle("active");
+      navMenu.classList.toggle("active");
+    });
+  }
+
+  // Navbar scroll
+  var nav = document.getElementById("mainNav");
+  window.addEventListener("scroll", function() {
+    if (window.scrollY > 50) {
+      if (nav) nav.classList.add("scrolled");
+    } else {
+      if (nav) nav.classList.remove("scrolled");
+    }
+  });
+
+  // TEAM PAGE SCROLL REVEAL
+  var teamMembers = document.querySelectorAll('.team-member-item');
+  if (teamMembers.length > 0) {
+    console.log("Found team members, setting up scroll reveal");
+    
+    function revealOnScroll() {
+      teamMembers.forEach(function(member) {
+        var rect = member.getBoundingClientRect();
+        var windowHeight = window.innerHeight;
+        
+        if (rect.top < windowHeight * 0.8) {
+          member.classList.add('revealed');
+        }
+      });
+    }
+    
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll(); // Check on load
+  }
+
+  // TEAM PAGE SCROLL DOWN BUTTON
+  var scrollDownBtn = document.getElementById("scroll-down");
+  var teamContainer = document.getElementById("team-container");
+  if (scrollDownBtn && teamContainer) {
+    scrollDownBtn.addEventListener("click", function() {
+      teamContainer.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+
+  // Simple particle canvas
+  var canvas = document.getElementById('particleCanvas');
+  if (canvas) {
+    var ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    var particles = [];
+
+    function Particle() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 2 + 1;
+      this.speedX = (Math.random() - 0.5) * 0.5;
+      this.speedY = (Math.random() - 0.5) * 0.5;
+      this.color = '#fa6701';
+    }
+
+    Particle.prototype.update = function() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+      if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+    };
+
+    Particle.prototype.draw = function() {
+      ctx.fillStyle = this.color;
+      ctx.globalAlpha = 0.3;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    };
+
+    for (var i = 0; i < 30; i++) {
+      particles.push(new Particle());
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(function(p) {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    window.addEventListener('resize', function() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  }
+
+  console.log("Setup complete");
+});
